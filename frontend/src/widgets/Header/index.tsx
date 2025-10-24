@@ -1,6 +1,6 @@
 import './index.css';
 
-export function Header() {
+export const Header = () => {
   return (
     <header className='header'>
       <img src='/logo.jpg' alt='логотип' className='header__logo' />
@@ -17,4 +17,4 @@ export function Header() {
       </form>
     </header>
   );
-}
+};

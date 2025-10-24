@@ -3,20 +3,20 @@
  * @type {import("prettier").Config}
  */
 export default {
-  trailingComma: 'all',
+  trailingComma: "all",
   singleQuote: true,
   jsxSingleQuote: true,
-  plugins: ['@ianvs/prettier-plugin-sort-imports'],
+  plugins: ["@ianvs/prettier-plugin-sort-imports"],
   importOrder: [
-    '<TYPES>',
-    '',
-    'react',
-    '<THIRD_PARTY_MODULES>',
-    '',
-    '^(@/shared|@/entities|@/features|@/widgets|@/pages|@/app)(.*)$',
-    '^[.]',
-    '',
-    '.s?css$',
+    "<TYPES>",
+    "",
+    "react",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^(@/shared|@/entities|@/features|@/widgets|@/pages|@/app)(.*)$",
+    "^[.]",
+    "",
+    ".s?css$",
   ],
-  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
 };

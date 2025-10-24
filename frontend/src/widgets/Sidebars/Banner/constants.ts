@@ -1,6 +1,6 @@
-import type { BannerProps } from '~/@types';
+import type { BannerContent } from '~/@types';
 
-export const BANNER_CONTENT: BannerProps[] = [
+export const BANNER_CONTENT: BannerContent[] = [
   {
     link: 'https://teatr-estrada.ru/',
     image: {

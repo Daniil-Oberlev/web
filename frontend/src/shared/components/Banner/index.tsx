@@ -1,11 +1,11 @@
 import './index.css';
 
-import type { BannerProps } from '~/@types';
+import type { BannerContent } from '~/@types';
 
-export const Banner = ({ link, image, text }: BannerProps) => {
+export const Banner = ({ link, image, text }: BannerContent) => {
   return (
     <article>
-      <a href={link}>
+      <a href={link} className='banner__list-item'>
         <img src={image.src} alt={image.alt} className='banner__image' />
         <p className='banner__text'>{text}</p>
       </a>
