@@ -1,8 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import { Layout, Home, About, Catalog, Contacts, Delivery } from "@/pages";
-
-import { ROUTES } from "@/shared/api/routes";
+import { About, Catalog, Contacts, Delivery, Home, Layout } from '@/pages';
+import { ROUTES } from '@/shared/api/routes';
 
 export const AppRoutes = () => {
   return (

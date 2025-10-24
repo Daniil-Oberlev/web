@@ -1,9 +1,17 @@
-import { Banner } from "@/shared/components/Banner";
-import { useState, useEffect, useMemo, KeyboardEvent, ChangeEvent } from "react";
-import { categories } from "@/shared/products";
-import { BANNER_CONTENT } from "./constants";
-import "../index.css";
-import "./index.css";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
+import { Banner } from '@/shared/components/Banner';
+import { categories } from '@/shared/products';
+import { BANNER_CONTENT } from './constants';
+
+import '../index.css';
+import './index.css';
 
 interface Product {
   id: number;
@@ -30,7 +38,7 @@ interface BannerContent {
 }
 
 export const BannerSidebar = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   // Мемоизированный поиск при изменении searchQuery
@@ -52,7 +60,7 @@ export const BannerSidebar = () => {
           ) {
             results.push({
               ...product,
-              categoryName: category.name
+              categoryName: category.name,
             });
           }
         });
@@ -83,34 +91,34 @@ export const BannerSidebar = () => {
 
   // Очистка поиска
   const handleClearSearch = () => {
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   // Проверяем, есть ли активный поиск
   const hasActiveSearch = searchQuery.trim().length > 0;
 
   return (
-    <aside className="aside">
-      <div className="navigation__search">
-        <input 
-          placeholder="поиск по товарам (название, описание, ID)" 
-          type="search" 
-          className="navigation__search-input"
+    <aside className='aside'>
+      <div className='navigation__search'>
+        <input
+          placeholder='поиск по товарам (название, описание, ID)'
+          type='search'
+          className='navigation__search-input'
           value={searchQuery}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
         />
-        <button 
-          className="navigation__button"
+        <button
+          className='navigation__button'
           onClick={() => performSearch(searchQuery)}
         >
           искать
         </button>
         {searchQuery && (
-          <button 
-            className="navigation__button-clear"
+          <button
+            className='navigation__button-clear'
             onClick={handleClearSearch}
-            aria-label="Очистить поиск"
+            aria-label='Очистить поиск'
           >
             ×
           </button>
@@ -119,29 +127,29 @@ export const BannerSidebar = () => {
 
       {/* Результаты поиска */}
       {searchResults.length > 0 && (
-        <div className="search-results">
-          <h3 className="search-results__title">
+        <div className='search-results'>
+          <h3 className='search-results__title'>
             Найдено товаров: {searchResults.length}
           </h3>
-          <ul className="search-results__list">
+          <ul className='search-results__list'>
             {searchResults.map((product: SearchResult) => (
-              <li key={product.id} className="search-results__item">
-                <div className="search-result__content">
-                  <img 
-                    src={product.image} 
+              <li key={product.id} className='search-results__item'>
+                <div className='search-result__content'>
+                  <img
+                    src={product.image}
                     alt={product.name}
-                    className="search-result__image"
+                    className='search-result__image'
                   />
-                  <div className="search-result__info">
-                    <h4 className="search-result__name">{product.name}</h4>
-                    <p className="search-result__id">ID: {product.id}</p>
-                    <p className="search-result__category">
+                  <div className='search-result__info'>
+                    <h4 className='search-result__name'>{product.name}</h4>
+                    <p className='search-result__id'>ID: {product.id}</p>
+                    <p className='search-result__category'>
                       Категория: {product.categoryName}
                     </p>
-                    <p className="search-result__description">
+                    <p className='search-result__description'>
                       {product.description}
                     </p>
-                    <p className="search-result__price">{product.price}</p>
+                    <p className='search-result__price'>{product.price}</p>
                   </div>
                 </div>
               </li>
@@ -152,14 +160,14 @@ export const BannerSidebar = () => {
 
       {/* Сообщение, если ничего не найдено */}
       {hasActiveSearch && searchResults.length === 0 && (
-        <div className="search-no-results">
+        <div className='search-no-results'>
           <p>По запросу "{searchQuery}" ничего не найдено</p>
         </div>
       )}
 
       {/* Баннеры показываются только когда нет активного поиска */}
       {!hasActiveSearch && (
-        <ul className="banner__list">
+        <ul className='banner__list'>
           {BANNER_CONTENT.map((banner: BannerContent) => (
             <li key={banner.link}>
               <Banner

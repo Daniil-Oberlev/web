@@ -1,7 +1,8 @@
-import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import './App.css';
 
-import { AppRoutes } from "@/shared/router";
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { AppRoutes } from '@/shared/router';
 
 const App = () => {
   return (

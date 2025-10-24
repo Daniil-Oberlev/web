@@ -17,9 +17,16 @@
     "dev": "pnpm -r --parallel run dev",
     "build": "pnpm -r run build",
     "install:all": "pnpm install",
+    "format": "pnpm -r run format",
+    "lint": "pnpm -r run lint",
     "clean": "pnpm -r run clean"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@evilmartians/lefthook": "^2.0.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "concurrently": "^9.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-attributes": "^1.0.0"
   }
 }

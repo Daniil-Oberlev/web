@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import "../index.css";
-import "./index.css";
+import '../index.css';
+import './index.css';
 
-import { NAV_ITEMS } from "./constants";
+import { NAV_ITEMS } from './constants';
 
 export const NavSidebar = () => {
   return (
-    <aside className="aside">
+    <aside className='aside'>
       <nav>
-        <ul className="aside__list">
+        <ul className='aside__list'>
           {NAV_ITEMS.map(({ path, label }) => (
             <li key={path}>
               <Link to={path}>{label}</Link>

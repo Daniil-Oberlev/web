@@ -1,24 +1,24 @@
-import { ROUTES } from "@/shared/api/routes";
+import { ROUTES } from '@/shared/api/routes';
 
 export const NAV_ITEMS = [
   {
     path: ROUTES.HOME,
-    label: "Главная",
+    label: 'Главная',
   },
   {
     path: ROUTES.CATALOG,
-    label: "Каталог",
+    label: 'Каталог',
   },
   {
     path: ROUTES.ABOUT,
-    label: "О компании",
+    label: 'О компании',
   },
   {
     path: ROUTES.DELIVERY,
-    label: "Доставка",
+    label: 'Доставка',
   },
   {
     path: ROUTES.CONTACTS,
-    label: "Контакты",
+    label: 'Контакты',
   },
 ] as const;

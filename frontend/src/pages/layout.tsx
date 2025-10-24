@@ -1,18 +1,19 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+
 import {
+  BannerSidebar,
+  Footer,
   Header,
   Navigation,
-  Footer,
   NavSidebar,
-  BannerSidebar,
-} from "@/widgets";
+} from '@/widgets';
 
 export const Layout = () => {
   return (
     <>
       <Header />
       <Navigation />
-      <div className="main">
+      <div className='main'>
         <NavSidebar />
         <Outlet />
         <BannerSidebar />

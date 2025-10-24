@@ -1,10 +1,10 @@
-import "./index.css";
+import './index.css';
 
-import { getCopyright } from "./copyright";
+import { getCopyright } from './copyright';
 
 export const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className='footer'>
       <p>{getCopyright()}</p>
     </footer>
   );
