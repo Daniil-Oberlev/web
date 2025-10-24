@@ -8,3 +8,4 @@ export interface BannerProps {
   image: BannerImage;
   text: string;
 }
+
