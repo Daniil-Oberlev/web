@@ -1,0 +1,17 @@
+.content {
+  padding: 10px 20px;
+}
+
+.content__header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content__image {
+  float: right;
+  padding: 5px;
+}
+
+.section__header {
+  margin: 15px 0 5px;
+}

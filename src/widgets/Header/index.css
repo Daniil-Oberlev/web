@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--accent-color);
+}
+
+.header__logo {
+  width: 150px;
+}
+
+.header__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}

@@ -1,0 +1,12 @@
+.aside__list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.aside__list li a {
+  white-space: nowrap
+}

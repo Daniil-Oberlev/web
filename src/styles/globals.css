@@ -1,0 +1,28 @@
+.header,
+.main,
+.navigation {
+  width: 80%;
+}
+
+a {
+  text-underline-offset: 2px;
+}
+
+ol,
+ul {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.list__circle {
+  list-style-type: circle;
+}
+
+.list__alphabet-upper {
+  list-style-type: upper-alpha;
+}
+
+.list__alphabet-lower {
+  list-style-type: lower-alpha;
+  margin-left: 20px;
+}

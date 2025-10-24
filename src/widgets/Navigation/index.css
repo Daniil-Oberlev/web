@@ -1,0 +1,18 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+
+.navigation__list {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navigation__search {
+  display: flex;
+  gap: 3px;
+}
