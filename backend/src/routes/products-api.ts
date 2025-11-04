@@ -1,10 +1,10 @@
 import { FastifyPluginAsync } from 'fastify';
 
-import { ROUTES } from '../constants/routes.js';;
+import { ROUTES } from '../constants/routes.js';
 import {
   getAllCategories,
-  getCategoryById,
   getAllProducts,
+  getCategoryById,
   getProductById,
 } from '../handlers/products/index.js';
 
@@ -22,4 +22,3 @@ const products: FastifyPluginAsync = async (fastify): Promise<void> => {
 };
 
 export default products;
-

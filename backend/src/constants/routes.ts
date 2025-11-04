@@ -8,4 +8,10 @@ export const ROUTES = {
     BASE: '/api/products',
     BY_ID: '/api/products/:id',
   },
+  AUTH: {
+    REGISTER: '/api/auth/register',
+    LOGIN: '/api/auth/login',
+    REFRESH: '/api/auth/refresh',
+    LOGOUT: '/api/auth/logout',
+  },
 } as const;
