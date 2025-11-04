@@ -7,4 +7,9 @@
 .gitattributes       export-ignore
 .gitignore           export-ignore
 
+*.jpg                binary
+*.jpeg               binary
+*.png                binary
+
+
 *.xml                diff linguist-detectable=true
