@@ -16,11 +16,11 @@ export const About = () => {
         помогли более <em>5000 клиентов</em> осуществить их ремонтные проекты.
       </p>
       <h3 className='section__header'>Наша миссия:</h3>
-      <table border='3' cellPadding='20' cellSpacing='5'>
+      <table border={3} cellPadding='20' cellSpacing='5'>
         <tbody>
           <tr>
-            <td rowSpan='3'>Основные принципы</td>
-            <td colSpan='2' align='center'>
+            <td rowSpan={3}>Основные принципы</td>
+            <td colSpan={2} align='center'>
               Направления деятельности
             </td>
           </tr>
@@ -59,7 +59,7 @@ export const About = () => {
         <li>Отдел логистики и доставки</li>
       </ol>
       <p>
-        Мы гордимся тем, что создали{' '}
+        Мы гордимся тем, что создали
         <strong>надежного партнера для строителей и ремонтников</strong>, где
         каждый может найти все необходимое для качественного ремонта. Наш
         магазин - это не просто точка продаж, это <em>центр компетенций</em>,

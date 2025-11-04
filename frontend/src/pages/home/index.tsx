@@ -7,7 +7,7 @@ export const Home = () => {
       <p>
         <img
           src='/main.jpg'
-          align='left'
+          // align='left'
           width={200}
           alt='Ассортимент строительного магазина'
           className='content__image'
@@ -25,11 +25,11 @@ export const Home = () => {
         многолетним практическим опытом.
       </p>
       <h3 className='section__header'>График поставок:</h3>
-      <table border='3' cellPadding='20' cellSpacing='5'>
+      <table border={3} cellPadding='20' cellSpacing='5'>
         <tbody>
           <tr>
-            <td rowSpan='3'>Основные категории</td>
-            <td colSpan='2' align='center'>
+            <td rowSpan={3}>Основные категории</td>
+            <td colSpan={2} align='center'>
               График обновления ассортимента
             </td>
           </tr>

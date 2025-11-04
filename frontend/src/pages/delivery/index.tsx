@@ -18,11 +18,11 @@ export const Delivery = () => {
         отдел работает профессионально и оперативно.
       </p>
       <h3 className='section__header'>Условия доставки:</h3>
-      <table border='3' cellPadding='20' cellSpacing='5'>
+      <table border={3} cellPadding='20' cellSpacing='5'>
         <tbody>
           <tr>
-            <td rowSpan='3'>Зоны доставки</td>
-            <td colSpan='2' align='center'>
+            <td rowSpan={3}>Зоны доставки</td>
+            <td colSpan={2} align='center'>
               Сроки и стоимость
             </td>
           </tr>
