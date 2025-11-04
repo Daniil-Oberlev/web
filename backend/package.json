@@ -11,7 +11,7 @@
     "start": "npm run build:ts && fastify start -l info dist/app.js",
     "format": "prettier . --write",
     "lint": "eslint .",
-    "build:ts": "tsc",
+    "build:ts": "tsc && prisma generate",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
