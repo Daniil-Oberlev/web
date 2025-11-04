@@ -4,7 +4,7 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Banner } from '@/shared/components/Banner';
-import { categories } from '@/shared/products';
+import { fetchCategories } from '@/shared/api/products';
 import { BANNER_CONTENT } from './constants';
 
 import '../index.css';
@@ -13,10 +13,27 @@ import './index.css';
 export const BannerSidebar = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await fetchCategories();
+        setCategories(data);
+      } catch (err) {
+        console.error('Failed to load categories:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCategories();
+  }, []);
 
   const performSearch = useMemo(() => {
     return (query: string): SearchResult[] => {
-      if (!query.trim()) {
+      if (!query.trim() || categories.length === 0) {
         return [];
       }
 
@@ -40,12 +57,14 @@ export const BannerSidebar = () => {
 
       return results;
     };
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
-    const results = performSearch(searchQuery);
-    setSearchResults(results);
-  }, [searchQuery, performSearch]);
+    if (!loading) {
+      const results = performSearch(searchQuery);
+      setSearchResults(results);
+    }
+  }, [searchQuery, performSearch, loading]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);

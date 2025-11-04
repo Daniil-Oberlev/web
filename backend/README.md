@@ -1,24 +1,85 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
+# Backend для онлайн-магазина "СТОЛПЛИТ"
 
-This project was bootstrapped with Fastify-CLI.
+## Настройка
 
-## Available Scripts
+### 1. Установка зависимостей
 
-In the project directory, you can run:
+```bash
+pnpm install
+```
 
-### `npm run dev`
+### 2. Настройка базы данных
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Создайте файл `.env` в корне папки `backend` со следующим содержимым:
 
-### `npm start`
+```env
+DATABASE_URL="mongodb://localhost:27017/stolplit?retryWrites=true&w=majority"
+```
 
-For production mode
+Для MongoDB Atlas используйте формат:
+```env
+DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/stolplit?retryWrites=true&w=majority"
+```
 
-### `npm run test`
+**Важно для MongoDB Atlas:**
+1. **Network Access** — добавьте ваш IP-адрес в MongoDB Atlas:
+   - Зайдите в MongoDB Atlas → Network Access
+   - Нажмите "Add IP Address"
+   - Добавьте ваш текущий IP или используйте `0.0.0.0/0` для всех IP (только для разработки!)
+   - Сохраните изменения
+2. Проверьте, что используете правильные username и password
+3. Убедитесь, что строка подключения содержит правильное имя кластера и имя базы данных
+4. Если используете MongoDB Atlas, убедитесь, что включен SSL/TLS (по умолчанию включен)
 
-Run the test cases.
+**Устранение проблем с подключением:**
+- Если получаете ошибку "Server selection timeout" или "fatal alert: InternalError":
+  - **Проверьте Network Access в MongoDB Atlas** — это самая частая причина проблемы
+  - Проверьте правильность строки подключения (должна содержать имя базы данных)
+  - Попробуйте использовать полную строку подключения из MongoDB Atlas (кнопка "Connect" в интерфейсе)
 
-## Learn More
+- Если получаете ошибку "Transactions are not supported":
+  - Это нормально для MongoDB Free Tier — транзакции не поддерживаются
+  - Seed скрипт уже настроен для работы без транзакций
+  - Если ошибка все еще появляется, проверьте подключение к базе данных
 
-To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
+### 3. Генерация Prisma Client
+
+После создания `.env` файла с DATABASE_URL:
+
+```bash
+pnpm prisma generate
+```
+
+### 4. Заполнение базы данных (seed)
+
+```bash
+pnpm prisma:seed
+```
+
+Это заполнит базу данных начальными данными о категориях и товарах.
+
+### 5. Запуск сервера
+
+Режим разработки:
+```bash
+pnpm dev
+```
+
+Продакшн режим:
+```bash
+pnpm start
+```
+
+Сервер будет доступен на `http://localhost:3000`
+
+## API Endpoints
+
+- `GET /api/categories` - Получить все категории с товарами
+- `GET /api/products` - Получить все товары
+- `GET /api/categories/:id` - Получить категорию по ID (MongoDB ObjectId)
+- `GET /api/products/:id` - Получить товар по ID (MongoDB ObjectId)
+
+## Дополнительные команды
+
+- `pnpm prisma:studio` - Открыть Prisma Studio для просмотра данных в БД
+- `pnpm prisma:generate` - Регенерировать Prisma Client

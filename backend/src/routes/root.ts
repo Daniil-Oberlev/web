@@ -1,9 +1,10 @@
 import { FastifyPluginAsync } from 'fastify';
 
-const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  fastify.get('/', async function (request, reply) {
-    return { root: true };
-  });
+import { ROUTES } from '../constants/routes.js';
+import { getRoot } from '../handlers/root.js';
+
+const root: FastifyPluginAsync = async (fastify): Promise<void> => {
+  fastify.get(ROUTES.ROOT, getRoot);
 };
 
 export default root;

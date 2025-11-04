@@ -1,9 +1,52 @@
-import { categories } from '@/shared/products';
+import { useEffect, useState } from 'react';
+
+import type { Category } from '~/@types';
+
+import { fetchCategories } from '@/shared/api/products';
 
 import '../index.css';
 import './index.css';
 
 export const Catalog = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await fetchCategories();
+        setCategories(data);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : 'Не удалось загрузить товары',
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCategories();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className='content'>
+        <p>Загрузка товаров...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className='content'>
+        <p>Ошибка: {error}</p>
+      </main>
+    );
+  }
+
   return (
     <main className='content'>
       <h2 className='content__header'>
