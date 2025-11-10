@@ -55,11 +55,11 @@ export const Contacts = () => {
       <h3 className='section__header' id='contacts'>
         Контактная информация:
       </h3>
-      <table border='3' cellPadding='20' cellSpacing='5'>
+      <table border={3} cellPadding='20' cellSpacing='5'>
         <tbody>
           <tr>
-            <td rowSpan='3'>Способы связи</td>
-            <td colSpan='2' align='center'>
+            <td rowSpan={3}>Способы связи</td>
+            <td colSpan={2} align='center'>
               Контактные данные
             </td>
           </tr>

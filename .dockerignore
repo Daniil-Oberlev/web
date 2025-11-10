@@ -1,0 +1,8 @@
+**/dist/
+**/.git/
+**/.gitignore
+**/.prettierignore
+**/lefthook.yml
+**/.gitattributes
+**/.editorconfig
+**/.czrc

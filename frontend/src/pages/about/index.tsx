@@ -16,11 +16,11 @@ export const About = () => {
         помогли более <em>5000 клиентов</em> осуществить их ремонтные проекты.
       </p>
       <h3 className='section__header'>Наша миссия:</h3>
-      <table border='3' cellPadding='20' cellSpacing='5'>
+      <table border={3} cellPadding='20' cellSpacing='5'>
         <tbody>
           <tr>
-            <td rowSpan='3'>Основные принципы</td>
-            <td colSpan='2' align='center'>
+            <td rowSpan={3}>Основные принципы</td>
+            <td colSpan={2} align='center'>
               Направления деятельности
             </td>
           </tr>
