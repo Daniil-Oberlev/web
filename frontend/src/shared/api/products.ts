@@ -7,9 +7,6 @@ export interface ProductWithCategory extends Product {
   categoryName: string;
 }
 
-/**
- * Fetch all categories with their products
- */
 export async function fetchCategories(): Promise<Category[]> {
   const response = await fetch(`${API_BASE_URL}/api/categories`);
   if (!response.ok) {
@@ -18,9 +15,6 @@ export async function fetchCategories(): Promise<Category[]> {
   return response.json();
 }
 
-/**
- * Fetch all products from all categories
- */
 export async function fetchProducts(): Promise<ProductWithCategory[]> {
   const response = await fetch(`${API_BASE_URL}/api/products`);
   if (!response.ok) {
@@ -29,9 +23,6 @@ export async function fetchProducts(): Promise<ProductWithCategory[]> {
   return response.json();
 }
 
-/**
- * Fetch a single category by ID
- */
 export async function fetchCategoryById(id: number): Promise<Category> {
   const response = await fetch(`${API_BASE_URL}/api/categories/${id}`);
   if (!response.ok) {
@@ -40,9 +31,6 @@ export async function fetchCategoryById(id: number): Promise<Category> {
   return response.json();
 }
 
-/**
- * Fetch a single product by ID
- */
 export async function fetchProductById(
   id: number,
 ): Promise<ProductWithCategory> {
@@ -52,4 +40,3 @@ export async function fetchProductById(
   }
   return response.json();
 }
-

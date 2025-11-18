@@ -3,8 +3,8 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { Banner } from '@/shared/components/Banner';
 import { fetchCategories } from '@/shared/api/products';
+import { Banner } from '@/shared/components/Banner';
 import { BANNER_CONTENT } from './constants';
 
 import '../index.css';
