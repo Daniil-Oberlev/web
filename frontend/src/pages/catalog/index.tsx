@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import type { Category, Product } from '~/@types';
 
-import type { Category } from '~/@types';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { fetchCategories } from '@/shared/api/products';
+import { useAuth } from '@/shared/providers/AuthProvider';
+import { useCart } from '@/shared/providers/useCart';
 
 import '../index.css';
 import './index.css';
@@ -11,6 +14,9 @@ export const Catalog = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -30,6 +36,15 @@ export const Catalog = () => {
 
     loadCategories();
   }, []);
+
+  const handleAddToCart = (product: Product) => {
+    if (!user) {
+      navigate('/register');
+      return;
+    }
+
+    addItem(product);
+  };
 
   if (loading) {
     return (
@@ -74,7 +89,14 @@ export const Catalog = () => {
                 <h4 className='product-name'>{product.name}</h4>
                 <p className='product-description'>{product.description}</p>
                 <div className='product-price'>{product.price}</div>
-                <button className='product-button'>В корзину</button>
+                <button
+                  className='product-button'
+                  onClick={() =>
+                    handleAddToCart(product as unknown as Product)
+                  }
+                >
+                  В корзину
+                </button>
               </div>
             ))}
           </div>

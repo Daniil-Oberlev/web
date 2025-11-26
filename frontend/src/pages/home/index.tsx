@@ -1,6 +1,28 @@
 import '../index.css';
 
+import { useMemo, useState } from 'react';
+
+import type { Product } from '~/@types';
+
+import { categories } from '@/shared/products';
+
 export const Home = () => {
+  const products: Product[] = useMemo(
+    () => categories.flatMap((c) => c.products),
+    [],
+  );
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const current = products[currentIndex];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % products.length);
+  };
+
   return (
     <main className='content'>
       <h2 className='content__header'>СТРОИТЕЛЬНЫЙ МАГАЗИН "СТОЛПЛИТ"</h2>
@@ -24,6 +46,43 @@ export const Home = () => {
         Наши консультанты - опытные специалисты строительной отрасли с
         многолетним практическим опытом.
       </p>
+
+      {current && (
+        <>
+          <h3 className='section__header'>Популярные товары</h3>
+          <div className='slider'>
+            <button
+              type='button'
+              className='slider__control slider__control--prev'
+              onClick={handlePrev}
+            >
+              ‹
+            </button>
+
+            <div className='slider__item product-card'>
+              <img
+                src={current.image}
+                alt={current.name}
+                className='product-image'
+                width={220}
+                height={160}
+              />
+              <h4 className='product-name'>{current.name}</h4>
+              <p className='product-description'>{current.description}</p>
+              <div className='product-price'>{current.price}</div>
+            </div>
+
+            <button
+              type='button'
+              className='slider__control slider__control--next'
+              onClick={handleNext}
+            >
+              ›
+            </button>
+          </div>
+        </>
+      )}
+
       <h3 className='section__header'>График поставок:</h3>
       <table border='3' cellPadding='20' cellSpacing='5'>
         <tbody>
