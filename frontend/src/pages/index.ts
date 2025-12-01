@@ -4,3 +4,7 @@ export * from './catalog';
 export * from './contacts';
 export * from './delivery';
 export * from './home';
+export * from './cart';
+export * from './register';
+export * from './privacy';
+export * from './terms';

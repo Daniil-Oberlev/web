@@ -3,8 +3,8 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { Banner } from '@/shared/components/Banner';
 import { fetchCategories } from '@/shared/api/products';
+import { Banner } from '@/shared/components/Banner';
 import { BANNER_CONTENT } from './constants';
 
 import '../index.css';
@@ -41,12 +41,15 @@ export const BannerSidebar = () => {
       const results: SearchResult[] = [];
 
       categories.forEach((category: Category) => {
+        const categoryMatches = category.name.toLowerCase().includes(searchTerm);
+
         category.products.forEach((product: Product) => {
-          if (
+          const productMatches =
             product.name.toLowerCase().includes(searchTerm) ||
             product.description.toLowerCase().includes(searchTerm) ||
-            product.id.toString().includes(searchTerm)
-          ) {
+            product.id.toString().includes(searchTerm);
+
+          if (categoryMatches || productMatches) {
             results.push({
               ...product,
               categoryName: category.name,
@@ -86,7 +89,7 @@ export const BannerSidebar = () => {
     <aside className='aside'>
       <div className='navigation__search'>
         <input
-          placeholder='поиск по товарам'
+          placeholder='поиск по товарам и категориям'
           type='search'
           className='navigation__search-input'
           value={searchQuery}
@@ -113,7 +116,7 @@ export const BannerSidebar = () => {
       {searchResults.length > 0 && (
         <div className='search-results'>
           <h3 className='search-results__title'>
-            Найдено товаров: {searchResults.length}
+            Найдено: {searchResults.length}
           </h3>
           <ul className='search-results__list'>
             {searchResults.map((product: SearchResult) => (

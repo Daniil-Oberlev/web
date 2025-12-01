@@ -4,4 +4,8 @@ export const ROUTES = {
   CATALOG: '/catalog',
   CONTACTS: '/contacts',
   DELIVERY: '/delivery',
+  CART: '/cart',
+  REGISTER: '/register',
+   PRIVACY: '/privacy',
+   TERMS: '/terms',
 } as const;
