@@ -42,7 +42,7 @@ export const Header = () => {
         <img src='/logo.jpg' alt='логотип' className='header__logo' />
         <h1>Столплит</h1>
         <div className='header__user'>
-          <span>Добро пожаловать, {user.email}</span>
+          <span>{user.email}</span>
           <Link to={ROUTES.CART} className='header__cart'>
             Корзина {totalCount > 0 && `(${totalCount})`}
           </Link>

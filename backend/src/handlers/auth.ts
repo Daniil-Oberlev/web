@@ -8,6 +8,7 @@ import {
   generateRefreshToken,
   hashPassword,
   REFRESH_EXPIRY,
+  verifyAccessToken,
   verifyRefreshToken,
 } from '../utils/auth.js';
 
@@ -131,4 +132,28 @@ export async function logout(request: FastifyRequest, reply: FastifyReply) {
   reply.clearCookie('refreshToken', { path: '/' });
 
   return { message: 'Logged out' };
+}
+
+export async function me(request: FastifyRequest, reply: FastifyReply) {
+  const token = request.cookies.accessToken;
+
+  if (!token) {
+    return reply.code(401).send({ error: 'No token' });
+  }
+
+  const decoded = verifyAccessToken(token);
+  if (!decoded) {
+    return reply.code(401).send({ error: 'Invalid or expired token' });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: decoded.userId },
+    select: { id: true, email: true },
+  });
+
+  if (!user) {
+    return reply.code(404).send({ error: 'User not found' });
+  }
+
+  return reply.send(user);
 }

@@ -13,6 +13,7 @@ export const ROUTES = {
     LOGIN: '/api/auth/login',
     REFRESH: '/api/auth/refresh',
     LOGOUT: '/api/auth/logout',
+    ME: '/api/auth/me',
   },
   REVIEWS: {
     BASE: '/api/reviews',

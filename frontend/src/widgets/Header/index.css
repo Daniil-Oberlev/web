@@ -16,6 +16,11 @@
   gap: 10px;
 }
 
+.header__user {
+  display: flex;
+  flex-direction: column;
+}
+
 .header__inputs {
   display: flex;
   flex-direction: column;
