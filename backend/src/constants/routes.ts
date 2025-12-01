@@ -14,4 +14,8 @@ export const ROUTES = {
     REFRESH: '/api/auth/refresh',
     LOGOUT: '/api/auth/logout',
   },
+  REVIEWS: {
+    BASE: '/api/reviews',
+    BY_PRODUCT: '/api/reviews/product/:productId',
+  },
 } as const;

@@ -26,3 +26,13 @@ export interface BannerContent {
   image: BannerImage;
   text: string;
 }
+
+export interface Review {
+  id: string;
+  productId: string;
+  userId: string;
+  rating: number;
+  comment: string;
+  userEmail: string;
+  createdAt: string;
+}

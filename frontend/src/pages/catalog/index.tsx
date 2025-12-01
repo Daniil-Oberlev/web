@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { fetchCategories } from '@/shared/api/products';
+import { Reviews } from '@/shared/components/Reviews';
 import { useAuth } from '@/shared/providers/AuthProvider';
 import { useCart } from '@/shared/providers/useCart';
 
@@ -77,28 +78,32 @@ export const Catalog = () => {
         <section key={category.id} className='category-section'>
           <h3 className='section__header'>{category.name}</h3>
           <div className='products-grid'>
-            {category.products.map((product) => (
-              <div key={product.id} className='product-card'>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className='product-image'
-                  width={200}
-                  height={150}
-                />
-                <h4 className='product-name'>{product.name}</h4>
-                <p className='product-description'>{product.description}</p>
-                <div className='product-price'>{product.price}</div>
-                <button
-                  className='product-button'
-                  onClick={() =>
-                    handleAddToCart(product as unknown as Product)
-                  }
-                >
-                  В корзину
-                </button>
-              </div>
-            ))}
+            {category.products.map((product) => {
+              const productId = (product as any)._id || product.id.toString();
+              return (
+                <div key={product.id} className='product-card'>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className='product-image'
+                    width={200}
+                    height={150}
+                  />
+                  <h4 className='product-name'>{product.name}</h4>
+                  <p className='product-description'>{product.description}</p>
+                  <div className='product-price'>{product.price}</div>
+                  <button
+                    className='product-button'
+                    onClick={() =>
+                      handleAddToCart(product as unknown as Product)
+                    }
+                  >
+                    В корзину
+                  </button>
+                  <Reviews productId={productId} />
+                </div>
+              );
+            })}
           </div>
         </section>
       ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { Product } from '~/@types';
 
@@ -9,12 +9,14 @@ const createCartValue = (
   items: CartItem[],
   addItem: (product: Product) => void,
   removeItem: (productId: number) => void,
+  updateQuantity: (productId: number, quantity: number) => void,
   clearCart: () => void,
 ): CartContextType => ({
   items,
   totalCount: items.reduce((sum, item) => sum + item.quantity, 0),
   addItem,
   removeItem,
+  updateQuantity,
   clearCart,
 });
 
@@ -28,7 +30,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [user, items.length]);
 
-  const addItem = (product: Product) => {
+  const addItem = useCallback((product: Product) => {
     setItems((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
@@ -41,17 +43,30 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       return [...prev, { product, quantity: 1 }];
     });
-  };
+  }, []);
 
-  const removeItem = (productId: number) => {
+  const removeItem = useCallback((productId: number) => {
     setItems((prev) => prev.filter((item) => item.product.id !== productId));
-  };
+  }, []);
 
-  const clearCart = () => setItems([]);
+  const updateQuantity = useCallback((productId: number, quantity: number) => {
+    if (quantity <= 0) {
+      setItems((prev) => prev.filter((item) => item.product.id !== productId));
+      return;
+    }
+
+    setItems((prev) =>
+      prev.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item,
+      ),
+    );
+  }, []);
+
+  const clearCart = useCallback(() => setItems([]), []);
 
   const value = useMemo<CartContextType>(
-    () => createCartValue(items, addItem, removeItem, clearCart),
-    [items],
+    () => createCartValue(items, addItem, removeItem, updateQuantity, clearCart),
+    [items, addItem, removeItem, updateQuantity, clearCart],
   );
 
   return (
